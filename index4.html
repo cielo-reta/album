@@ -1,0 +1,129 @@
+<style >body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #ff758c, #ff7eb3);
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 20px;
+}
+
+h1 {
+    color: #ff758c;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.photo-album {
+    display: flex;
+    overflow: hidden;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 400px;
+    position: relative;
+}
+
+.photo {
+    min-width: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+#photo1 { background-image: url('1.jpeg'); }
+#photo2 { background-image: url('2.jpeg'); }
+#photo3 { background-image: url('3.jpeg'); }
+#photo4 { background-image: url('4.jpeg'); }
+#photo5 { background-image: url('5.jpeg'); }
+#photo6 { background-image: url('6.jpeg'); }
+#photo7 { background-image: url('7.jpeg'); }
+
+.photo {
+    background-size: cover;
+    background-position: center;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    background: #ff758c;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #ff7eb3;
+}
+</style>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Álbum de Fotos</title>
+   
+</head>
+<body>
+    <div class="container">
+        <h1>Album de Fotos♥</h1>
+        <h4>Eres lo que mas quiero en este universo, jamas lo olvides corazon</h4>
+        <div class="photo-album">
+            <div class="photo" id="photo1"></div>
+            <div class="photo" id="photo2"></div>
+            <div class="photo" id="photo3"></div>
+            <div class="photo" id="photo4"></div>
+            <div class="photo" id="photo5"></div>
+            <div class="photo" id="photo6"></div>
+            <div class="photo" id="photo7"></div>
+        </div>
+        <div class="controls">
+            <button onclick="prevPhoto()">&#10094; Anterior</button>
+            <button onclick="nextPhoto()">Siguiente &#10095;</button>
+        </div>
+    </div>
+    
+<script >let currentPhotoIndex = 0;
+
+function showPhoto(index) {
+    const photos = document.querySelectorAll('.photo');
+    photos.forEach((photo, i) => {
+        photo.style.transform = `translateX(${(i - index) * 100}%)`;
+    });
+}
+
+function prevPhoto() {
+    const photos = document.querySelectorAll('.photo');
+    currentPhotoIndex = (currentPhotoIndex === 0) ? photos.length - 1 : currentPhotoIndex - 1;
+    showPhoto(currentPhotoIndex);
+}
+
+function nextPhoto() {
+    const photos = document.querySelectorAll('.photo');
+    currentPhotoIndex = (currentPhotoIndex === photos.length - 1) ? 0 : currentPhotoIndex + 1;
+    showPhoto(currentPhotoIndex);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    showPhoto(currentPhotoIndex);
+});
+</script>
+</body>
+</html>
